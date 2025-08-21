@@ -1,5 +1,0 @@
-@PACKAGE_INIT@
-
-include("${CMAKE_CURRENT_LIST_DIR}/ems_envTargets.cmake")
-
-set(ems_env_VERSION "@PACKAGE_VERSION@")

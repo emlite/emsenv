@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(emsenv VERSION 0.1.1 LANGUAGES C)
+project(emsenv VERSION 0.1.2 LANGUAGES C)
 
 add_library(emsenv src/lib.c)
 set_target_properties(emsenv PROPERTIES LINKER_LANGUAGE C)
