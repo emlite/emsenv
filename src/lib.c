@@ -192,7 +192,8 @@ EM_JS(bool, emlite_val_get_value_bool_impl, (Handle n), {
 EM_JS(int, emlite_val_get_value_int_impl, (Handle n), {
     const val = EMLITE_VALMAP.get(n);
     if (typeof val === 'bigint') {
-        return Number(val) | 0;  // Convert BigInt to 32-bit signed (may truncate)
+        // Preserve lower 32 bits and signedness without precision loss
+        return Number(BigInt.asIntN(32, val));
     }
     return val | 0;  // 32-bit signed conversion
 });
@@ -200,7 +201,8 @@ EM_JS(int, emlite_val_get_value_int_impl, (Handle n), {
 EM_JS(unsigned int, emlite_val_get_value_uint_impl, (Handle n), {
     const val = EMLITE_VALMAP.get(n);
     if (typeof val === 'bigint') {
-        return Number(val) >>> 0;  // Convert BigInt to 32-bit unsigned (may truncate)
+        // Preserve lower 32 bits as unsigned without precision loss
+        return Number(BigInt.asUintN(32, val));
     }
     return val >>> 0;  // 32-bit unsigned conversion
 });
