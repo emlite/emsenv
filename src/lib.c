@@ -85,6 +85,10 @@ function normalizeThrown(e) {
 globalThis.normalizeThrown = normalizeThrown;
 });
 
+EM_JS(int, emlite_target_impl, (), {
+    return 1041;
+});
+
 EM_JS(Handle, emlite_val_new_array_impl, (), {
     return EMLITE_VALMAP.add([]);
 });
@@ -387,6 +391,9 @@ void emlite_init_handle_table() { emlite_init_handle_table_impl(); }
 
 EMSCRIPTEN_KEEPALIVE
 Handle emlite_val_new_array() { return emlite_val_new_array_impl(); }
+
+EMSCRIPTEN_KEEPALIVE
+int emlite_target() { return emlite_target_impl(); }
 
 EMSCRIPTEN_KEEPALIVE
 Handle emlite_val_new_object() { return emlite_val_new_object_impl(); }
